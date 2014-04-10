@@ -1,0 +1,27 @@
+<b>Post Title:</b>
+<%= @post.title %><br>
+<b>Post Text:</b>
+<%= @post.text %><br>
+<b>Post Likes:</b>
+<%= @post.likes %><br>
+<a href="/posts/likes/<%= @post.id %>">like</a><br>
+<br>
+<br>
+
+<h2>Add a comment:</h2>
+<form action="/comments/<%= @post.id %>" method="post">
+	<textarea name="texto"></textarea>
+	<input type="submit" value="Agregar Comentario">
+</form>
+
+<h2>Comments</h2>
+<% orden=@post.comments.order('created_at DESC') %>
+<% orden.each do |comment| %>
+   <p>
+    <strong>Comment:</strong>
+    <%= comment.texto %><br>
+    <strong>Fecha de creacion:</strong>
+    <%= comment.created_at %>
+  </p>
+<% end %>
+ 

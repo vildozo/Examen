@@ -1,0 +1,60 @@
+<h1>Pagina Administrativa</h1>
+<a href="/posts">Ir a Pagina Principal</a><br>
+<a href="/posts/report"> Ver Reporte</a>
+<br>
+<br>
+<a href="/posts/new">NUEVO POST</a>
+
+<% orden = @posts.order('created_at DESC') %>
+<% orden.each do |post| %>
+	<p>
+		<b>Title:</b>
+		<%= post.title %>
+	</p>
+	<p>
+		<b>Text:</b>
+		<%= post.text %>
+	</p>
+	<p>
+		<b>Category:</b>
+		<%= post.category %>
+	</p>
+	<p>
+		<a href="/posts/<%= post.id %>">Editar</a>
+		<a href="/posts/delete/<%= post.id %>">Borrar</a>
+	</p>
+	<hr style="color:#0000FF">
+<% end %>
+
+
+
+
+
+<h2>Busqueda</h2>
+
+<%= form_tag admi_path, :method => 'get' do %>
+
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+    <% pal=params[:search] %>
+
+<table style="border:1px solid black;">
+	<tr>
+		<th style="padding:0px 30px 0px 30px">Title</th>
+		<th style="padding:0px 30px 0px 30px">Text</th>
+	</tr>
+
+<% @posts.each do |post| %>
+ 	<% arr= post.text.split.uniq %>
+ 	<% arr.each do |palabra| %>
+ 		<% if palabra==pal %>
+			<tr>
+				<td style="padding:0px 30px 0px 30px"> <%= post.title %> </td>
+				<td style="padding:0px 30px 0px 30px"> <%= post.text %> </td>
+			</tr>
+		<% end %>
+	<% end %>
+<% end %>
+</table>
+
+<% end %>

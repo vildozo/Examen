@@ -1,0 +1,18 @@
+<h1>EDITAR POST</h1>
+
+
+<form action="/posts<%= @post.id ? '/'+@post.id.to_s : '' %>" method="post">
+	<b>Post Title:</b>
+	<input type="text" name="post[title]" value="<%= @post.title %>">
+	<br>
+	<b>Post Text:</b>
+	<input type="text" name="post[text]" value="<%= @post.text %>"> <br>
+	<b>Post Category:</b>
+	<select name="post[category]" value="<%= @post.category %>">
+   		<option value="religion">religion</option>
+	   	<option value="pelicula">pelicula</option>
+   		<option value="musica">musica</option>
+   		<option value="deporte">deporte</option>
+ 	</select> 
+	<input type="submit" name="commit" value="Modificar">
+</form>

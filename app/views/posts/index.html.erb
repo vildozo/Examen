@@ -1,0 +1,54 @@
+<h1>PAGINA PRINCIPAL</h1>
+<a href="/posts/admi">IR A PAGINA ADMINISTRATIVA</a>
+
+<table>
+	<tr>
+		<th style="padding:0px 30px 0px 30px">Titulo</th>
+		<th style="padding:0px 30px 0px 30px">Texto</th>
+		<th style="padding:0px 30px 0px 30px">Category</th>
+		<th style="padding:0px 30px 0px 30px">Fecha de Creacion</th>
+		<th style="padding:0px 30px 0px 30px">Likes</th>
+		<th style="padding:0px 30px 0px 30px">Dislikes</th>
+	</tr>
+
+	<% orden = @posts.order('created_at DESC') %>
+<% orden.each do |post| %>
+	<tr>
+		<td style="padding:0px 30px 0px 30px"><a href="/posts/show/<%= post.id %> "> <%= post.title %> </a></td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.text %> </td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.category %> </td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.created_at %> </td>
+		<td style="padding:0px 30px 0px 30px"> <a href="/posts/likes/<%= post.id %>"> Like </td>
+		<td style="padding:0px 30px 0px 30px"> <a href="/posts/dislikes/<%= post.id %>"> Dislike </td>
+	</tr>
+<% end %>
+</table>
+<br>
+<hr>
+
+ 	<%= form_tag principal_path, :method => 'get' do %>
+	<b>filtrar por: religion,pelicula,musica o deporte</b>
+
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+    <% pal=params[:search] %>
+
+<table style="border:1px solid black;">
+	<tr>
+		<th style="padding:0px 30px 0px 30px">Title</th>
+		<th style="padding:0px 30px 0px 30px">Text</th>
+	</tr>
+
+<% @posts.each do |post| %>
+ 		<% arr= post.category %>
+ 		<% if arr==pal %>
+			<tr>
+				<td style="padding:0px 30px 0px 30px"> <%= post.title %> </td>
+				<td style="padding:0px 30px 0px 30px"> <%= post.text %> </td>
+			</tr>
+		<% end %>
+	
+<% end %>
+</table>
+
+<% end %>

@@ -1,0 +1,17 @@
+<H2>Crear Post</H2>
+<form action = "/posts" method="post" >
+	<b>Post Title:</b>
+	<input type="text" name="post[title]"><br>
+	<b>Post Text</b>
+	<textarea cols="40" rows="5" name="post[text]">	</textarea><br>
+	<b>category</b>
+	<select name="post[category]">
+   		<option value="religion">religion</option>
+	   	<option value="pelicula">pelicula</option>
+   		<option value="musica">musica</option>
+   		<option value="deporte">deporte</option>
+ 	</select> 
+ <br>
+ <input type="submit" name="commit" value="Guardar Post">
+
+</form>

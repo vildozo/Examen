@@ -1,0 +1,25 @@
+<h1>Reporte</h1>
+<table>
+	<tr>
+		<th style="padding:0px 30px 0px 30px">Id</th>
+		<th style="padding:0px 30px 0px 30px">Titulo</th>
+		<th style="padding:0px 30px 0px 30px">Fecha de Creacion</th>
+		<th style="padding:0px 30px 0px 30px">Fecha de Modificacion</th>
+		<th style="padding:0px 30px 0px 30px">Cantidad de Comentarios</th>
+		<th style="padding:0px 30px 0px 30px">Cantidad de likes</th>
+		<th style="padding:0px 30px 0px 30px">Cantidad de Palabras</th>
+	</tr>
+
+	<% orden = @posts.order('created_at DESC') %>
+<% orden.each do |post| %>
+	<tr>
+		<td style="padding:0px 30px 0px 30px"> <%= post.id %> </td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.title %> </a></td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.created_at %> </td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.updated_at %> </td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.comments.length %> </td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.likes %></td>
+		<td style="padding:0px 30px 0px 30px"> <%= post.text.split.length %> </td>
+	</tr>
+<% end %>
+</table>
